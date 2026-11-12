@@ -1,0 +1,9 @@
+{
+  "name": "barbara-bridals-website",
+  "version": "3.0.0",
+  "private": true,
+  "description": "Barbara Bridals website with Netlify Functions and Netlify Blobs",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}
