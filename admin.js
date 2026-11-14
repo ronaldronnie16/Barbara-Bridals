@@ -1,4 +1,4 @@
-/* Barbara Bridals admin - talks to Netlify Functions (/api/*), data lives in Netlify Blobs. */
+/* Barbra Bridals admin - talks to Netlify Functions (/api/*), data lives in Netlify Blobs. */
 const TOKEN_KEY = 'bb_admin_token';
 const $ = (s, r = document) => r.querySelector(s);
 const esc = (v = '') => String(v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -174,7 +174,7 @@ $('#export-csv').addEventListener('click', () => {
   if (!data.requests.length) return toast('There are no requests to export.', true);
   const cell = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
   const rows = [['Received', 'Name', 'Phone', 'Category', 'Outfit', 'Event date', 'Status', 'Details'], ...data.requests.map(r => [r.created, r.name, r.phone, r.category, r.outfit, r.date, r.status, r.details])];
-  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([rows.map(r => r.map(cell).join(',')).join('\n')], { type: 'text/csv' })); a.download = 'barbara-bridals-bookings.csv'; a.click(); URL.revokeObjectURL(a.href);
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([rows.map(r => r.map(cell).join(',')).join('\n')], { type: 'text/csv' })); a.download = 'barbra-bridals-bookings.csv'; a.click(); URL.revokeObjectURL(a.href);
 });
 
 

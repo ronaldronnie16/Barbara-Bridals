@@ -1,4 +1,4 @@
-/* Barbara Bridals - public site. Catalogue, testimonials and bookings come from Netlify Functions (/api/*). */
+/* Barbra Bridals - public site. Catalogue, testimonials and bookings come from Netlify Functions (/api/*). */
 const WA_NUMBER = '256772526919';
 const CACHE_KEY = 'bb_catalog_cache_v3';
 const state = { products: [], reviews: [], filter: 'All', q: '', sort: 'featured', onlyAvailable: false };
@@ -71,7 +71,7 @@ function renderProducts() {
       <div class="product-info"><h3>${esc(p.name)}</h3><small>${esc(p.category)}${p.sizes ? ' · ' + esc(p.sizes) : ''}</small>
         <p>${esc(p.description || 'Contact us for more details.')}</p>
         <div class="product-meta"><span class="price">${money(p.price)}</span><span class="status ${statusClass(p.availability)}">${esc(p.availability)}</span></div>
-        <a class="product-contact" href="${waLink('Hello Barbara Bridals, I am interested in ' + p.name + '. Please share more details and availability.')}" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+        <a class="product-contact" href="${waLink('Hello Barbra Bridals, I am interested in ' + p.name + '. Please share more details and availability.')}" target="_blank" rel="noopener">Enquire on WhatsApp</a>
       </div></article>`;
   }).join('');
 }
@@ -106,7 +106,7 @@ function openModal(id) {
     <div class="product-meta"><span class="price">${money(p.price)}</span><span class="status ${statusClass(p.availability)}">${esc(p.availability)}</span></div>
     ${p.sizes ? `<p class="modal-line"><b>Sizes:</b> ${esc(p.sizes)}</p>` : ''}
     <p class="modal-desc">${esc(p.description || 'Contact us for more details about this outfit.')}</p>
-    <div class="modal-actions"><a class="button button-gold" href="${waLink('Hello Barbara Bridals, I am interested in ' + p.name + '. Please share more details and availability.')}" target="_blank" rel="noopener">Enquire on WhatsApp</a><button class="button button-light" id="modal-book" type="button">Request a booking</button></div>`;
+    <div class="modal-actions"><a class="button button-gold" href="${waLink('Hello Barbra Bridals, I am interested in ' + p.name + '. Please share more details and availability.')}" target="_blank" rel="noopener">Enquire on WhatsApp</a><button class="button button-light" id="modal-book" type="button">Request a booking</button></div>`;
   $('#modal-book').onclick = () => { closeModal(); const f = $('#booking-form'); f.elements.outfit.value = p.name; if ([...f.elements.category.options].some(o => o.value === p.category)) f.elements.category.value = p.category; $('#booking').scrollIntoView({ behavior: 'smooth' }); setTimeout(() => f.elements.name.focus({ preventScroll: true }), 600); };
   modal.hidden = false; document.body.classList.add('no-scroll'); $('.modal-close').focus();
 }
@@ -123,7 +123,7 @@ form?.addEventListener('submit', async e => {
   const d = Object.fromEntries(new FormData(form));
   if (!d.name.trim() || d.phone.replace(/\D/g, '').length < 9 || !d.category) { statusEl.className = 'wide form-status error'; statusEl.textContent = 'Please enter your name, a valid phone number and choose a collection.'; return; }
   const btn = $('#booking-submit'); btn.disabled = true; btn.textContent = 'Sending…';
-  const text = `Hello Barbara Bridals, I would like to request a booking.\nName: ${d.name}\nPhone: ${d.phone}\nCategory: ${d.category}${d.outfit ? '\nOutfit: ' + d.outfit : ''}\nEvent date: ${d.date || 'Not specified'}\nDetails: ${d.details || 'None'}`;
+  const text = `Hello Barbra Bridals, I would like to request a booking.\nName: ${d.name}\nPhone: ${d.phone}\nCategory: ${d.category}${d.outfit ? '\nOutfit: ' + d.outfit : ''}\nEvent date: ${d.date || 'Not specified'}\nDetails: ${d.details || 'None'}`;
   let saved = true;
   try {
     const res = await fetch('/api/bookings', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) });

@@ -1,4 +1,4 @@
-/* Barbara Bridals - previous occasions (photos + videos), stories viewer and footer helpers.
+/* Barbra Bridals - previous occasions (photos + videos), stories viewer and footer helpers.
    Uses helpers defined in script.js: $, esc, api, imgUrl. */
 (() => {
   let occasions = [], groups = [];
